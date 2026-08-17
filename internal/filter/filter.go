@@ -20,7 +20,7 @@ type BloomFilter struct {
 // New creates a BloomFilter with m bits and k hash functions.
 // It returns ErrInvalidParams if m == 0 or k == 0.
 func New(m, k uint) (*BloomFilter, error) {
-	if m == 0 {
+	if m == 0 || k == 0 {
 		return nil, ErrInvalidParams
 	}
 	return &BloomFilter{m: m, k: k, bits: make([]byte, (m+7)/8)}, nil
